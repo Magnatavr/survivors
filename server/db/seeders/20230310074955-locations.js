@@ -3,22 +3,22 @@ module.exports = {
   async up(queryInterface, Sequelize) {
     await queryInterface.bulkInsert('Locations', [
       {
-        name: 'India',
+        name: 'Desert',
         createdAt: new Date(),
         updatedAt: new Date(),
       },
       {
-        name: 'Saudi Arabia',
+        name: 'Forest',
         createdAt: new Date(),
         updatedAt: new Date(),
       },
       {
-        name: 'Russia',
+        name: 'Elbrus',
         createdAt: new Date(),
         updatedAt: new Date(),
       },
       {
-        name: 'Tibet',
+        name: 'Mountain',
         createdAt: new Date(),
         updatedAt: new Date(),
       },
