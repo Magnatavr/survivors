@@ -1,13 +1,28 @@
 import React from 'react'
+import { useParams } from 'react-router-native';
 import { StyleSheet, Text, View } from 'react-native';
 
 
+
+import { RouteProp, useRoute } from '@react-navigation/native';
+
+type RootStackParamList = {
+  OnePost: { id: number };
+};
+
+type OnePostRouteProp = RouteProp<RootStackParamList, 'OnePost'>;
 export default function HomePage() {
+  const route = useRoute<OnePostRouteProp>();
+
+
+  // const { id } = useParams();
+
+  const  id  = route.params?.id;
+   console.log(id)
+
   return (
-    <View style={styles.container}>
-    <Text style={styles.text}>Home Screen</Text>
-  </View>
-  )
+    <Text>Значение параметра id:{id} </Text>
+  );
 }
 
 

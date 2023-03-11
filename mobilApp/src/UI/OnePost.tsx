@@ -1,5 +1,6 @@
 /* eslint-disable react/require-default-props */
 import React from 'react';
+import { useNavigation } from '@react-navigation/native';
 import { StyleSheet, View, Text, Image } from 'react-native';
 import { useAppDispatch } from '../features/reduxHooks';
 import { addToFavorites, deleteFromFavorites } from '../features/slices';
@@ -13,9 +14,19 @@ type OnePostProps = {
 };
 
 export default function OnePost({ post, url }: OnePostProps): JSX.Element {
+  const navigation = useNavigation();
   const dispatch = useAppDispatch();
   const addToFavoritesHandler = (): void => {
-    dispatch(addToFavorites(post));
+    // dispatch(addToFavorites(post));
+    if (post) {
+      console.log(post.id)
+      const id = post.id
+      navigation.navigate('Home', {  id });
+      
+    } else {
+      // Обработка ошибки, если объект "post" не существует
+      console.log("errorrrr")
+    }
   };
 
   return (

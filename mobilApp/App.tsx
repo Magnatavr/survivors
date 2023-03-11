@@ -7,7 +7,7 @@ import store from './src/redux/store';
 
 export default function App() {
   return (
-    <Provider store={store}> {/* оберните ваше приложение в провайдер */}
+    <Provider store={store}> 
     <View style={styles.container}>
       <Navigation />
       <StatusBar style="auto" />
