@@ -1,23 +1,29 @@
-import { StatusBar } from 'expo-status-bar';
 import React from 'react';
-import { StyleSheet, Text, View } from 'react-native';
-import Navigation from './src/Navigation';
-import { Provider } from 'react-redux'; 
-import store from './src/redux/store';
+import { View } from 'react-native';
+import Main from './src/components/Main';
+import CountrySelector from './src/components/CountrySelector';
+import { useSelector } from 'react-redux';
 
-export default function App() {
+const App = () => {
+  const [showCountrySelector, setShowCountrySelector] = React.useState(false);
+
+  const handlePressEnter = () => {
+    setShowCountrySelector(true);
+  };
+
+  const handleSelectCountry = () => {
+    setShowCountrySelector(false);
+  };
+
   return (
-    <Provider store={store}> {/* оберните ваше приложение в провайдер */}
-    <View style={styles.container}>
-      <Navigation />
-      <StatusBar style="auto" />
+    <View style={{ flex: 1, justifyContent: 'center', alignItems: 'center' }}>
+      {showCountrySelector ? (
+        <CountrySelector onSelectCountry={handleSelectCountry} />
+      ) : (
+        <Main onPressEnter={handlePressEnter} />
+      )}
     </View>
-  </Provider>
   );
-}
+};
 
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-  },
-});
+export default App;
