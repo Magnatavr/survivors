@@ -12,41 +12,40 @@ export default function AppNavbar(): JSX.Element {
   const dispatch = useAppDispatch();
 
   const logoutHandler = (): void => {
-    dispatch(logouUserActionThunk())
-    .catch(() => null)
-  }
+    dispatch(logouUserActionThunk()).catch(() => null);
+  };
 
   return (
     <Navbar bg="dark" variant="dark">
       <Container>
-        <Navbar.Brand href="#home">Navbar</Navbar.Brand>
         <Nav className="me-auto" style={{ flexGrow: 1 }}>
-          <NavLink className="nav-link" to="/">
-            Home
-          </NavLink>
-          <NavLink className="nav-link" to="/posts">
-            Posts
-          </NavLink>
-          <NavLink className="nav-link" to="/words">
-            Words
-          </NavLink>
-          {userData.status !== 'logged' && (
-            <>
-              <NavLink className="nav-link" to="/auth/signin">
-                signin
-              </NavLink>
-              <NavLink className="nav-link" to="/auth/signup">
-                signup
-              </NavLink>
-            </>
+          {userData.sessions.user?.role === 'superAdmin' && (
+            <NavLink className="nav-link" to="/super+">
+              + ADMIN
+            </NavLink>
+          )}
+          {userData.sessions.status !== 'logged' && (
+            <NavLink className="nav-link" to="/auth/signin">
+              signin
+            </NavLink>
           )}
         </Nav>
-        {userData.status === 'logged' && (
+        {userData.sessions.status === 'logged' && (
           <>
             <Nav className="me-auto">
-              <span className="nav-link"> Hello, {userData?.user?.name}</span>
+              <NavLink className="nav-link" to="/">
+                Add article
+              </NavLink>
+              <span className="nav-link">
+                {' '}
+                Hello, {userData?.sessions.user?.name}
+              </span>
             </Nav>
-            <Button onClick={logoutHandler} className="nav-link" variant="warning">
+            <Button
+              onClick={logoutHandler}
+              className="nav-link"
+              variant="warning"
+            >
               {' '}
               logout
             </Button>

@@ -1,50 +1,61 @@
 import { createSlice } from '@reduxjs/toolkit';
-import type { UserType } from '../../types/userTypes';
-import { checkUserActionThunk, logouUserActionThunk, signInUserActionThunk, signUpUserActionThunk } from '../actions';
+import type { UserType, UserFromBackand } from '../../types/userTypes';
+import {
+  checkUserActionThunk,
+  logouUserActionThunk,
+  signInUserActionThunk,
+  addNewAdminActionThunk,
+  getAllUsersActionThunk,
+} from '../actions';
 
-const initialState: UserType = {
-  user: undefined,
-  status: 'fetching',
+type InitialStateType = {
+  admin: UserFromBackand[];
+  sessions: UserType;
 };
 
-// const userSuccess = (state, action) => {
-//     state.status = 'logged';
-//     state.user = action.payload;
-//   }
-  
+const initialState: InitialStateType = {
+  admin: [],
+  sessions: {
+    user: undefined,
+    status: 'fetching',
+  },
+};
+
 const userSlice = createSlice({
   name: 'userSlice',
   initialState,
   reducers: {},
   extraReducers: (builder) => {
     builder
+      .addCase(getAllUsersActionThunk.fulfilled, (state, action) => {
+        state.admin = action.payload;
+      })
       .addCase(checkUserActionThunk.fulfilled, (state, action) => {
-        state.status = 'logged';
-        state.user = action.payload;
+        state.sessions.status = 'logged';
+        state.sessions.user = action.payload;
       })
       .addCase(signInUserActionThunk.fulfilled, (state, action) => {
-        state.status = 'logged';
-        state.user = action.payload;
+        state.sessions.status = 'logged';
+        state.sessions.user = action.payload;
       })
-      .addCase(signUpUserActionThunk.fulfilled, (state, action) => {
-        state.status = 'logged';
-        state.user = action.payload;
-      })
-      .addCase(signInUserActionThunk.rejected, (state) => {
-        state.user = undefined;
-        state.status = 'err';
+      .addCase(addNewAdminActionThunk.fulfilled, (state, action) => {
+        state.admin.push(action.payload);
       })
       .addCase(logouUserActionThunk.fulfilled, (state) => {
-        state.user = undefined;
-        state.status = 'idle';
+        state.sessions.user = undefined;
+        state.sessions.status = 'idle';
       })
-      .addCase(signUpUserActionThunk.rejected, (state) => {
-        state.user = undefined;
-        state.status = 'err';
+      .addCase(signInUserActionThunk.rejected, (state) => {
+        state.sessions.user = undefined;
+        state.sessions.status = 'err';
+      })
+      .addCase(addNewAdminActionThunk.rejected, (state) => {
+        state.sessions.user = undefined;
+        state.sessions.status = 'err';
       })
       .addCase(checkUserActionThunk.rejected, (state) => {
-        state.user = undefined;
-        state.status = 'err';
+        state.sessions.user = undefined;
+        state.sessions.status = 'err';
       });
   },
 });

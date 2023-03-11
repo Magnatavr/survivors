@@ -16,12 +16,22 @@ export const checkUserActionThunk = createAsyncThunk<UserFromBackand>(
       }),
 );
 
-export const signUpUserActionThunk = createAsyncThunk<
+export const getAllUsersActionThunk = createAsyncThunk<UserFromBackand[]>(
+  'users/get',
+  async () =>
+    axios<UserFromBackand[]>('/api/admins')
+      .then((res) => res.data)
+      .catch(() => {
+        throw new Error('err');
+      }),
+);
+
+export const addNewAdminActionThunk = createAsyncThunk<
   UserFromBackand,
   UserSignUpForm
->('user/signup', async (data) =>
+>('user/newadmin', async (data) =>
   axios
-    .post<UserFromBackand>('/api/auth/signup', data)
+    .post<UserFromBackand>('/api/auth/newadmin', data)
     .then((res) => res.data)
     .catch(() => {
       throw new Error('err');
