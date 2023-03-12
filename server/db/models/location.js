@@ -4,9 +4,8 @@ const {
 
 module.exports = (sequelize, DataTypes) => {
   class Location extends Model {
-    static associate({ CountLoc, LocDang }) {
-      Location.hasMany(CountLoc, { foreignKey: 'locationId' });
-      Location.hasMany(LocDang, { foreignKey: 'locationId' });
+    static associate({ CountLocDang }) {
+      Location.hasMany(CountLocDang, { foreignKey: 'locationId' });
     }
   }
   Location.init({

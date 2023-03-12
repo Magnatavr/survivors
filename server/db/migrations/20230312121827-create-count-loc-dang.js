@@ -1,7 +1,7 @@
 /** @type {import('sequelize-cli').Migration} */
 module.exports = {
   async up(queryInterface, Sequelize) {
-    await queryInterface.createTable('CountLocs', {
+    await queryInterface.createTable('CountLocDangs', {
       id: {
         allowNull: false,
         autoIncrement: true,
@@ -12,7 +12,7 @@ module.exports = {
         type: Sequelize.INTEGER,
         references: {
           model: 'Countries',
-          key: 'id',
+          key: 'id', 
         }
       },
       locationId: {
@@ -20,6 +20,13 @@ module.exports = {
         references: {
           model: 'Locations',
           key: 'id',
+        }
+      },
+      dangerId: {
+        type: Sequelize.INTEGER,
+        references: {
+          model: 'Dangers',
+          key: "id",
         }
       },
       createdAt: {
@@ -33,6 +40,6 @@ module.exports = {
     });
   },
   async down(queryInterface, Sequelize) {
-    await queryInterface.dropTable('CountLocs');
+    await queryInterface.dropTable('CountLocDangs');
   }
 };
