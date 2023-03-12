@@ -1,28 +1,20 @@
 import React from 'react';
 import { View } from 'react-native';
-import Main from './src/components/Main';
-import CountrySelector from './src/components/CountrySelector';
-import { useSelector } from 'react-redux';
+
+import { Provider, useSelector } from 'react-redux';
+import store from './src/redux/store';
+import Navigation from './src/UI/navigation/Navigation';
+import axios from 'axios';
+
+axios.defaults.baseURL='http://localhost:3001'
 
 const App = () => {
-  const [showCountrySelector, setShowCountrySelector] = React.useState(false);
-
-  const handlePressEnter = () => {
-    setShowCountrySelector(true);
-  };
-
-  const handleSelectCountry = () => {
-    setShowCountrySelector(false);
-  };
+  
 
   return (
-    <View style={{ flex: 1, justifyContent: 'center', alignItems: 'center' }}>
-      {showCountrySelector ? (
-        <CountrySelector onSelectCountry={handleSelectCountry} />
-      ) : (
-        <Main onPressEnter={handlePressEnter} />
-      )}
-    </View>
+    <Provider store={store}>
+        <Navigation />
+    </Provider>
   );
 };
 
