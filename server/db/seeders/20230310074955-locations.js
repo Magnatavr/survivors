@@ -13,7 +13,7 @@ module.exports = {
         updatedAt: new Date(),
       },
       {
-        name: 'Elbrus',
+        name: 'Moscow Elbrus',
         createdAt: new Date(),
         updatedAt: new Date(),
       },

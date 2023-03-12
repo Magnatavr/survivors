@@ -4,8 +4,8 @@ const {
 
 module.exports = (sequelize, DataTypes) => {
   class Country extends Model {
-    static associate({ CountLoc }) {
-      this.hasMany(CountLoc, { foreignKey: 'countryId'});
+    static associate({ CountLocDang }) {
+      this.hasMany(CountLocDang, { foreignKey: 'countryId'});
     }
   }
   Country.init({

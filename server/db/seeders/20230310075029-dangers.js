@@ -3,8 +3,8 @@ module.exports = {
   async up(queryInterface, Sequelize) {
     await queryInterface.bulkInsert('Dangers', [
       {
-        name: 'Sonya',
-        article: 'Соня, вы настолько великолепны в своей работе, что даже бот-помощник не смог бы заменить вас.',
+        name: 'Tiger',
+        article: 'Не поворачивайте спину тигру. Тигры атакуют сзади, поэтому необходимо всегда держаться лицом к тигру.',
         createdAt: new Date(),
         updatedAt: new Date(),
       },
@@ -21,8 +21,20 @@ module.exports = {
         updatedAt: new Date(),
       },
       {
-        name: 'Tiger',
-        article: 'Не поворачивайте спину тигру. Тигры атакуют сзади, поэтому необходимо всегда держаться лицом к тигру.',
+        name: 'Sonya',
+        article: 'Соня, вы настолько великолепны в своей работе, что даже бот-помощник не смог бы заменить вас.',
+        createdAt: new Date(),
+        updatedAt: new Date(),
+      },
+      {
+        name: 'TypeScript',
+        article: 'Выдыхай бобёр выдыхай...!!!',
+        createdAt: new Date(),
+        updatedAt: new Date(),
+      },
+      {
+        name: 'Snow Leopard',
+        article: 'Ирбис очень скрытный хищник и избегает людей, поэтому не пережывайте.',
         createdAt: new Date(),
         updatedAt: new Date(),
       },
