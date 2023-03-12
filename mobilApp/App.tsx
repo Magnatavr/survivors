@@ -1,23 +1,21 @@
-import { StatusBar } from 'expo-status-bar';
 import React from 'react';
-import { StyleSheet, Text, View } from 'react-native';
-import Navigation from './src/Navigation';
-import { Provider } from 'react-redux'; 
+import { View } from 'react-native';
+
+import { Provider, useSelector } from 'react-redux';
 import store from './src/redux/store';
+import Navigation from './src/UI/navigation/Navigation';
+import axios from 'axios';
 
-export default function App() {
+axios.defaults.baseURL='http://localhost:3001'
+
+const App = () => {
+  
+
   return (
-    <Provider store={store}> 
-    <View style={styles.container}>
-      <Navigation />
-      <StatusBar style="auto" />
-    </View>
-  </Provider>
+    <Provider store={store}>
+        <Navigation />
+    </Provider>
   );
-}
+};
 
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-  },
-});
+export default App;

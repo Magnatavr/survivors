@@ -1,25 +1,67 @@
-import React from 'react';
-import logo from './logo.svg';
-import './App.css';
+import React, { useEffect } from 'react';
+import { Container } from 'react-bootstrap';
+import { Route, Routes } from 'react-router-dom';
+import PrivateRouter from './components/HOC/PrivateRouter';
+import AdminPageAddPost from './components/Pages/AdminPageAddPost';
+import AuthPage from './components/Pages/AuthPage';
+import SuperAdminPage from './components/Pages/SuperAdminPage';
+// import OnePostPage from './components/Pages/OnePostPage';
+// import PostPage from './components/Pages/PostPage';
+// import WordsPage from './components/Pages/WordsPage';
+import AppNavbar from './components/UI/AppNavbar';
+import { checkUserActionThunk, getAllUsersActionThunk } from './features/actions';
+import { useAppDispatch, useAppSelector } from './features/reduxHooks';
 
-function App() {
+function App(): JSX.Element {
+  const session = useAppSelector((state) => state.userData.sessions);
+  const dispatch = useAppDispatch();
+  useEffect(() => {
+    dispatch(checkUserActionThunk()).catch(() => null);
+  }, []);
+  useEffect(() => {
+    dispatch(getAllUsersActionThunk()).catch(() => null);
+  }, []);
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.tsx</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
+    <Container>
+      <AppNavbar />
+      <Routes>
+        <Route
+          path="/"
+          element={
+            <PrivateRouter
+              isAllowed={session.status === 'logged'}
+              redirectTo="/auth/signin"
+            >
+              <AdminPageAddPost />
+            </PrivateRouter>
+          }
+        />
+        <Route
+          element={
+            <PrivateRouter
+              isAllowed={
+                session.status === 'logged' &&
+                session.user?.role === 'superAdmin'
+              }
+              redirectTo="/"
+            />
+          }
         >
-          Learn React
-        </a>
-      </header>
-    </div>
+          <Route path="/super+" element={<SuperAdminPage />} />
+        </Route>
+        <Route
+          path="/auth/signin"
+          element={
+            <PrivateRouter
+              isAllowed={!(session.status === 'logged')}
+              redirectTo="/"
+            >
+              <AuthPage />
+            </PrivateRouter>
+          }
+        />
+      </Routes>
+    </Container>
   );
 }
 

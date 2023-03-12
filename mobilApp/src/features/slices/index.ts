@@ -1,2 +1,1 @@
-export * from './postSlice'
-export * from './locationSlice'
+export * from './allItems';
