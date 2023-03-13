@@ -38,6 +38,7 @@ locRouter.post("/loc", async (req, res) => {
 
 locRouter.get("/:id", async (req, res) => {
   const { id } = req.params;
+  
   try {
     const myLocations = await CountLocDang.findAll({
       where: { countryId: id },
