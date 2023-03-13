@@ -2,7 +2,7 @@ import React, { useEffect } from 'react';
 import { Container } from 'react-bootstrap';
 import { Route, Routes } from 'react-router-dom';
 import PrivateRouter from './components/HOC/PrivateRouter';
-import AdminPageAddPost from './components/Pages/AdminPageAddPost';
+import AdminPageAddLocation from './components/Pages/AdminPageAddLocation';
 import AuthPage from './components/Pages/AuthPage';
 import SuperAdminPage from './components/Pages/SuperAdminPage';
 // import OnePostPage from './components/Pages/OnePostPage';
@@ -32,7 +32,7 @@ function App(): JSX.Element {
               isAllowed={session.status === 'logged'}
               redirectTo="/auth/signin"
             >
-              <AdminPageAddPost />
+              <AdminPageAddLocation />
             </PrivateRouter>
           }
         />
