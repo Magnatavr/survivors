@@ -1,6 +1,6 @@
 const express = require("express");
 const { Op } = require("sequelize");
-const { CountLoc } = require("../db/models");
+const { CountLocDang } = require("../db/models");
 const { Location } = require("../db/models");
 
 const locRouter = express.Router();
@@ -17,9 +17,9 @@ locRouter.get("/", async (req, res) => {
 
 locRouter.post("/loc", async (req, res) => {
   const { id } = req.body;
-  console.log(req.body);
+  // console.log(req.body);
   try {
-    const allLocationsInCountry = await CountLoc.findAll({
+    const allLocationsInCountry = await CountLocDang.findAll({
       where: { countryId: id },
     });
     const allLocations = await Location.findAll({
@@ -39,7 +39,7 @@ locRouter.post("/loc", async (req, res) => {
 locRouter.get("/:id", async (req, res) => {
   const { id } = req.params;
   try {
-    const myLocations = await CountLoc.findAll({
+    const myLocations = await CountLocDang.findAll({
       where: { countryId: id },
     });
     const allLocations = await Location.findAll({
