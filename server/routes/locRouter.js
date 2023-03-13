@@ -56,5 +56,5 @@ locRouter.get("/:id", async (req, res) => {
     return res.sendStatus(401);
   }
 });
-// ddd
+
 module.exports = locRouter;
