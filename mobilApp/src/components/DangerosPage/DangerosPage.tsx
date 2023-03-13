@@ -8,7 +8,7 @@ import { RouteProp, useRoute } from '@react-navigation/native';
 import { getDangerosThunk } from '../../features/actions/dangerosAction';
 
 type RootStackParamList = {
-  OnePost: { id: number };
+  OnePost: { id: number,idCountry:number };
 };
 
 type OnePostRouteProp = RouteProp<RootStackParamList, 'OnePost'>;
@@ -21,7 +21,12 @@ export default function DangerosPage() {
 
 
   
-    const  id  = route.params?.id;
+    const  {id, idCountry}  = route.params
+
+  console.log(id);
+  console.log(idCountry);
+  
+  
     
   const handlePress = (id) => {
     // Переход на следующую страницу с передачей параметра id
@@ -29,7 +34,7 @@ export default function DangerosPage() {
   };
 
     useEffect(() => {
-        dispatch(getDangerosThunk(id)).catch((err) => console.log(err));
+        dispatch(getDangerosThunk(id,idCountry)).catch((err) => console.log(err));
       },[]);
     
     return (

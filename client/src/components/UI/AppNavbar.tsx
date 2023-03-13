@@ -38,7 +38,7 @@ export default function AppNavbar(): JSX.Element {
               </NavLink>
               <span className="nav-link">
                 {' '}
-                Hello, {userData?.sessions.user?.name}
+                Hello, {userData?.sessions?.user?.name}
               </span>
             </Nav>
             <Button

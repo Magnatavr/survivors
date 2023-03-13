@@ -8,7 +8,7 @@ import { useNavigation } from '@react-navigation/native';
 import { RouteProp, useRoute } from '@react-navigation/native';
 
 type RootStackParamList = {
-  OnePost: { id: number };
+  OnePost: { id: number, idCountry:number };
 };
 
 type OnePostRouteProp = RouteProp<RootStackParamList, 'OnePost'>;
@@ -23,19 +23,21 @@ export default function LocationComponent() {
   
     const  id  = route.params?.id;
 
-  const handlePress = (id) => {
+  const handlePress = (id:number, idCountry:number) => {
     // Переход на следующую страницу с передачей параметра id
-    navigation.navigate('Dangeros', { id });
+    navigation.navigate('Dangeros', { id , idCountry});
   };
 
     useEffect(() => {
+      
+      
         dispatch(getLocationsThunk(id)).catch((err) => console.log(err));
       },[]);
     
     return (
         <View>
           {locations.map((item) => (
-            <TouchableHighlight key={item.id} onPress={() => handlePress(item.id)}>
+            <TouchableHighlight key={item.id} onPress={() => handlePress(item.id, id)}>
               <View style={styles.card}>
                 <Text style={styles.title}>{item.name}</Text>
                 {/* <Text>{item.description}</Text> */}
