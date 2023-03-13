@@ -8,7 +8,7 @@ type MyPostData = {
 
 export const getDangerosThunk = createAsyncThunk(
 'dangeros/get',
-async (data:MyPostData) => axios.post(`/api/locations/{id}`,data)
+async (data:MyPostData) => axios.post(`/api/dangers/dang`,data)
 .then((res) => res.data)
 .catch((err)=> {
     throw new Error('location get Error');

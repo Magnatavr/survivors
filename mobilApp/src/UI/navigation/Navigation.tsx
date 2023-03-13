@@ -8,6 +8,7 @@ import StartPage from '../../components/StartPage/StartPage';
 import CountryPage from '../../components/CountryPage/CountryPage';
 import LocationComponent from '../../components/LocationComponent/LocationComponent';
 import DangerosPage from '../../components/DangerosPage/DangerosPage';
+import ArticalPage from '../../components/ArticlPage/ArticalPage';
 
 const Tab = createBottomTabNavigator();
 const Stack = createStackNavigator();
@@ -22,6 +23,8 @@ const Navigation = () => {
         <Stack.Screen name="Country" component={CountryPage} /> 
         <Stack.Screen name="location" component={LocationComponent} /> 
         <Stack.Screen name="Dangeros" component={DangerosPage} /> 
+        <Stack.Screen name="Artical" component={ArticalPage} /> 
+
 
 
         

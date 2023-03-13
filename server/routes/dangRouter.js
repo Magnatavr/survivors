@@ -7,7 +7,7 @@ const dangRouter = express.Router();
 
 dangRouter.post("/dang", async (req, res) => {
   const { id, idCountry } = req.body;
-  // console.log(req.body);
+
   try {
     const allDangerosInLocation = await CountLocDang.findAll({
       where: { locationId: id, countryId: idCountry },
