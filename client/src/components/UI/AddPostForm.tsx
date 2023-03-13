@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
 import Button from 'react-bootstrap/Button';
 import Form from 'react-bootstrap/Form';
 import { useAppDispatch, useAppSelector } from '../../features/reduxHooks';
@@ -10,6 +10,7 @@ import {
 // import type { CountryLocTypeForm } from '../../types';
 
 export default function AddPostForm(): JSX.Element {
+  const [statusList, setStatusList] = useState(false);
   const dispatch = useAppDispatch();
   useEffect(() => {
     dispatch(getAllCountryActionThunk()).catch(() => null);
@@ -19,14 +20,17 @@ export default function AddPostForm(): JSX.Element {
   }, []);
   const allCountry = useAppSelector((state) => state.itemData.country);
   const allLocation = useAppSelector((state) => state.itemData.allLocations);
-  const contextLocation = useAppSelector((state) => state.itemData.locations);
   const handleSwitchCountry = (
     e: React.ChangeEvent<HTMLSelectElement>,
   ): void => {
     dispatch(getAllLocationsInCountryActionThunk(e.target.value)).catch(
       () => null,
-    )
+    );
+    if (allLocation) {
+      setStatusList(true);
+    }
   };
+  const contextLocation = useAppSelector((state) => state.itemData.locations);
   return (
     <Form>
       <Form.Group controlId="formBasicSelect">
@@ -45,6 +49,20 @@ export default function AddPostForm(): JSX.Element {
           ))}
         </Form.Select>
       </Form.Group>
+      {statusList && (
+        <Form.Group controlId="formBasicCheckbox">
+          {allLocation?.map((location) => (
+            <Form.Check
+              key={location.id}
+              type="checkbox"
+              label={location.name}
+              checked={contextLocation.some(
+                (el) => el.id === location.id,
+              )}
+            />
+          ))}
+        </Form.Group>
+      )}
       <div className="text-center mb-3">
         <Button variant="primary" type="submit">
           Добавить локацию
