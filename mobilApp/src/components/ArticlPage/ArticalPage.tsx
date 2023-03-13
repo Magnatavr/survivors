@@ -5,40 +5,34 @@ import { useNavigation } from '@react-navigation/native';
 
 import { RouteProp, useRoute } from '@react-navigation/native';
 import { getDangerosThunk } from '../../features/actions/dangerosAction';
+import { getArticleThunk } from '../../features/actions';
 
 type RootStackParamList = {
   OnePost: { id: number; idCountry: number };
 };
 
 type OnePostRouteProp = RouteProp<RootStackParamList, 'OnePost'>;
-export default function DangerosPage() {
-  const dangeros = useAppSelector((state) => state.sliceData.dangeros);
+export default function ArticalPage() {
+  const article = useAppSelector((state) => state.sliceData.article);
   const dispatch = useAppDispatch();
 
-  const navigation = useNavigation();
   const route = useRoute<OnePostRouteProp>();
 
-  const { id, idCountry } = route.params;
-
-  const handlePress = (id) => {
-    // Переход на следующую страницу с передачей параметра id
-    navigation.navigate('Artical', { id });
-  };
+  const { id } = route.params;
 
   useEffect(() => {
-    dispatch(getDangerosThunk(route.params)).catch((err) => console.log(err));
+    dispatch(getArticleThunk(id)).catch((err) => console.log(err));
   }, []);
+console.log(article);
 
   return (
     <View>
-      {dangeros.map((item) => (
-        <TouchableHighlight key={item.id} onPress={() => handlePress(item.id)}>
-          <View style={styles.card}>
-            <Text style={styles.title}>{item.name}</Text>
-            {/* <Text>{item.description}</Text> */}
-          </View>
-        </TouchableHighlight>
-      ))}
+      
+        <View style={styles.card}>
+          <Text style={styles.title}>{article.name}</Text>
+          <Text>{article.article}</Text>
+        </View>
+     
     </View>
   );
 }
