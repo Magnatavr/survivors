@@ -27,12 +27,10 @@ console.log(article);
 
   return (
     <View>
-      
         <View style={styles.card}>
           <Text style={styles.title}>{article.name}</Text>
           <Text>{article.article}</Text>
-        </View>
-     
+        </View>  
     </View>
   );
 }
