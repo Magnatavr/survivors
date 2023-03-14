@@ -1,49 +1,67 @@
 import React, { useEffect } from 'react';
-import { View, Text, TouchableHighlight } from 'react-native';
+import { View, Text, TouchableHighlight, ImageBackground } from 'react-native';
 import { getCountryThunk } from '../../features/actions';
 import { useAppDispatch, useAppSelector } from '../../features/reduxHooks';
 import { useNavigation } from '@react-navigation/native';
 
-export default function CountryPage() {
-    const countres = useAppSelector((state)=> state.sliceData.countres)
-    const dispatch = useAppDispatch()
+import backgroundImage from '../Images/earth.png';
 
-    const navigation = useNavigation();
+export default function CountryPage() {
+  const countres = useAppSelector((state) => state.sliceData.countres);
+  const dispatch = useAppDispatch();
+
+  const navigation = useNavigation();
 
   const handlePress = (id) => {
     // Переход на следующую страницу с передачей параметра id
     navigation.navigate('location', { id });
   };
 
-    useEffect(() => {
-        dispatch(getCountryThunk()).catch((err) => console.log(err));
-      },[]);
-    
-    return (
-        <View>
-          {countres.map((item) => (
-            <TouchableHighlight key={item.id} onPress={() => handlePress(item.id)}>
-              <View style={styles.card}>
-                <Text style={styles.title}>{item.name}</Text>
-                {/* <Text>{item.description}</Text> */}
-              </View>
-            </TouchableHighlight>
-          ))}
-        </View>
-      );
-    
+  useEffect(() => {
+    dispatch(getCountryThunk()).catch((err) => console.log(err));
+  }, []);
+
+  return (
+    <ImageBackground source={backgroundImage} style={styles.background}>
+      <View style={styles.card2}>
+        {countres.map((item) => (
+          <TouchableHighlight
+            key={item.id}
+            onPress={() => handlePress(item.id)}
+          >
+            <View style={styles.card}>
+              <Text style={styles.title}>{item.name}</Text>
+            </View>
+          </TouchableHighlight>
+        ))}
+      </View>
+    </ImageBackground>
+  );
 }
 const styles = {
-    card: {
-      backgroundColor: '#fff',
-      borderRadius: 5,
-      padding: 10,
-      marginBottom: 10,
-      elevation: 3,
-    },
-    title: {
-      fontWeight: 'bold',
-      fontSize: 16,
-      marginBottom: 5,
-    },
-  };
+  background: {
+    flex: 1,
+    resizeMode: 'cover',
+    justifyContent: 'center',
+  },
+  card: {
+    backgroundColor: '#228B60',
+    width: 250,
+    borderRadius: 10,
+    padding: 10,
+    marginBottom: 30,
+    elevation: 3,
+    justifyContent: 'center',
+    alignItems: 'center',
+  },
+  title: {
+    fontFamily: 'Arial',
+    fontWeight: 'normal',
+    fontSize: 20,
+    marginBottom: 5,
+    color: '#FFFFFF',
+  },
+  card2: {
+    marginLeft: 70,
+  },
+};

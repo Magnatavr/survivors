@@ -19,7 +19,7 @@ const Navigation = () => {
      <Stack.Navigator>
         <Stack.Screen name="Start" component={StartPage} />
 
-        <Stack.Screen name="Country" component={CountryPage} /> 
+        <Stack.Screen name="country" component={CountryPage} /> 
         <Stack.Screen name="location" component={LocationComponent} /> 
         <Stack.Screen name="Dangeros" component={DangerosPage} /> 
 
