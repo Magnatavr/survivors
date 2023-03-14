@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import {
   View,
   Text,
@@ -12,21 +12,21 @@ import backgroundImage from '../Images/surv.png';
 
 export default function StartPage() {
   const navigation = useNavigation();
+  
+  useEffect(()=> {
+    
+    setTimeout(() => {
+      navigation.navigate('Country')
+    }, 5000);
+  },[])
 
   const handlePress = () => {
-    // Переход на следующую страницу
+
     navigation.navigate('country');
   };
 
   return (
-    // <ImageBackground source={backgroundImage} style={styles.background}>
-    //   <View style={styles.titleContainer}>
-    //     <Text style={styles.title}>SURVIVAL</Text>
-    //   </View>
-    //   <View style={styles.buttonContainer}>
-    //     <Button title="Enter" onPress={() => navigation.navigate('Country')} color="#228B60" />
-    //   </View>
-    // </ImageBackground>
+
     <ImageBackground source={backgroundImage} style={styles.background}>
       <View>
         

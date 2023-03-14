@@ -8,24 +8,62 @@ import StartPage from '../../components/StartPage/StartPage';
 import CountryPage from '../../components/CountryPage/CountryPage';
 import LocationComponent from '../../components/LocationComponent/LocationComponent';
 import DangerosPage from '../../components/DangerosPage/DangerosPage';
+import ArticalPage from '../../components/ArticlPage/ArticalPage';
+import HomePages from '../../components/homepages/HomePages';
+import Icon from 'react-native-vector-icons/FontAwesome';
 
 const Tab = createBottomTabNavigator();
 const Stack = createStackNavigator();
 
+const MainStack = () => (
+
+     <Stack.Navigator>
+        <Stack.Screen name="Start" component={StartPage} options={{ headerShown: false }}/>
+        <Stack.Screen name="Country" component={CountryPage} options={{ headerShown: false }}/> 
+        <Stack.Screen name="location" component={LocationComponent} /> 
+        <Stack.Screen name="Dangeros" component={DangerosPage} /> 
+        <Stack.Screen name="Artical" component={ArticalPage} /> 
+        
+      </Stack.Navigator>
+
+)
+
+
+
+const MainTabStack = () => (
+  <Tab.Navigator
+    screenOptions={({ route }) => ({
+      tabBarIcon: ({ focused, color, size }) => {
+        let iconName;
+
+        if (route.name === 'MainStack') {
+          iconName = focused ? 'th-list' : 'th-list';
+        } else if (route.name === 'information') {
+          iconName = focused ? 'fire' : 'fire';
+        }
+
+        // You can return any component that you like here!
+        return <Icon name={iconName} size={size} color={color} />;
+      },
+      tabBarActiveTintColor: 'tomato',
+      tabBarInactiveTintColor: 'gray',
+      tabBarStyle: [
+        {
+          display: 'flex',
+        },
+        null,
+      ],
+    })}
+  >
+    <Tab.Screen name="MainStack" component={MainStack} options={{ headerShown: false }} />
+    <Tab.Screen name="information" component={HomePages} />
+  </Tab.Navigator>
+);
+
 const Navigation = () => {
   return (
     <NavigationContainer>
-     
-     <Stack.Navigator>
-        <Stack.Screen name="Start" component={StartPage} />
-
-        <Stack.Screen name="country" component={CountryPage} /> 
-        <Stack.Screen name="location" component={LocationComponent} /> 
-        <Stack.Screen name="Dangeros" component={DangerosPage} /> 
-
-
-        
-      </Stack.Navigator>
+   <MainTabStack/>
     </NavigationContainer>
   );
 };
