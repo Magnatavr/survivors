@@ -53,6 +53,7 @@ export default function LocationComponent() {
           <TouchableHighlight
             key={item.id}
             onPress={() => handlePress(item.id, id)}
+            underlayColor="transparent"
           >
             <View style={styles.card}>
               <Text style={styles.title}>{item.name}</Text>

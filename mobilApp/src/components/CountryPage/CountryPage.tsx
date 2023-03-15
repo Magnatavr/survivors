@@ -24,10 +24,12 @@ export default function CountryPage() {
   return (
     <ImageBackground source={backgroundImage} style={styles.background}>
       <View style={styles.card2}>
-        {countres.map((item) => (
+        {countres && 
+        countres?.map((item) => (
           <TouchableHighlight
             key={item.id}
             onPress={() => handlePress(item.id)}
+            underlayColor="transparent"
           >
             <View style={styles.card}>
               <Text style={styles.title}>{item.name}</Text>
