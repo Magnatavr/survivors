@@ -13,16 +13,16 @@ import backgroundImage from '../Images/surv.png';
 export default function StartPage() {
   const navigation = useNavigation();
   
-  useEffect(()=> {
+  // useEffect(()=> {
     
     setTimeout(() => {
       navigation.navigate('Country')
     }, 5000);
-  },[])
+  // },[])
 
   const handlePress = () => {
 
-    navigation.navigate('country');
+    navigation.navigate('Country');
   };
 
   return (
