@@ -38,6 +38,7 @@ export default function DangerosPage() {
         <TouchableHighlight
           key={item.id}
           onPress={() => handlePress(item.id)}
+          underlayColor="transparent"
         >
           <View style={styles.card}>
             <Text style={styles.title}>{item.name}</Text>

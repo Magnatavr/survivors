@@ -25,7 +25,6 @@ export default function ArticalPage() {
   useEffect(() => {
     dispatch(getArticleThunk(id)).catch((err) => console.log(err));
   }, []);
-console.log(article);
 
   return (
     <ImageBackground source={backgroundImage} style={styles.background}>

@@ -12,12 +12,13 @@ import backgroundImage from '../Images/surv.png';
 
 export default function StartPage() {
   const navigation = useNavigation();
+
   
   // useEffect(()=> {
     
     setTimeout(() => {
       navigation.navigate('Country')
-    }, 5000);
+    }, 2000);
   // },[])
 
   const handlePress = () => {
@@ -25,16 +26,16 @@ export default function StartPage() {
     navigation.navigate('Country');
   };
 
+
   return (
 
     <ImageBackground source={backgroundImage} style={styles.background}>
       <View>
         
-        <TouchableHighlight onPress={() => handlePress()}>
+        <TouchableHighlight underlayColor="transparent" onPress={() => handlePress()}>
           
           <View style={styles.titleContainer}>
           <Text style={styles.title}>SURVIVAL</Text>
-            {/* <Text style={styles.title1}>Enter</Text> */}
           </View>
         </TouchableHighlight>
       </View>
@@ -49,7 +50,7 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
   },
   titleContainer: {
-    flex: 1,
+    flex:0 ,
     justifyContent: 'center',
     alignItems: 'center',
     paddingTop: 0,
