@@ -34,7 +34,10 @@ export default function AppNavbar(): JSX.Element {
           <>
             <Nav className="me-auto">
               <NavLink className="nav-link" to="/">
-                Add article
+                Add location
+              </NavLink>
+              <NavLink className="nav-link" to="/dangersedit">
+                Add dangers
               </NavLink>
               <span className="nav-link">
                 {' '}

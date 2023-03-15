@@ -36,6 +36,7 @@ locRouter.post("/loc", async (req, res) => {
   }
 });
 
+
 locRouter.get("/:id", async (req, res) => {
   const { id } = req.params;
   

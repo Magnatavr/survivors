@@ -2,6 +2,7 @@ import React, { useEffect } from 'react';
 import { Container } from 'react-bootstrap';
 import { Route, Routes } from 'react-router-dom';
 import PrivateRouter from './components/HOC/PrivateRouter';
+import AdminPageAddDangers from './components/Pages/AdminPageAddDangers';
 import AdminPageAddLocation from './components/Pages/AdminPageAddLocation';
 import AuthPage from './components/Pages/AuthPage';
 import SuperAdminPage from './components/Pages/SuperAdminPage';
@@ -33,6 +34,17 @@ function App(): JSX.Element {
               redirectTo="/auth/signin"
             >
               <AdminPageAddLocation />
+            </PrivateRouter>
+          }
+        />
+        <Route
+          path="/dangersedit"
+          element={
+            <PrivateRouter
+              isAllowed={session.status === 'logged'}
+              redirectTo="/auth/signin"
+            >
+              <AdminPageAddDangers />
             </PrivateRouter>
           }
         />

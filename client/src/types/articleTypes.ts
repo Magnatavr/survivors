@@ -9,8 +9,14 @@ export type LocationType = {
 };
 
 export type DangerType = {
+  id: number;
   name: string;
   text: string;
 };
 
 export type CountryLocTypeForm = string;
+
+export type CountryLocDangTypeForm = {
+  locationId: number;
+  currCountry: number | null;
+};

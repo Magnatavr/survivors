@@ -9,6 +9,8 @@ const countryRouter = require("./routes/getCountryRouter");
 const locRouter = require("./routes/locRouter");
 const dangRouter = require("./routes/dangRouter");
 const articleRouter = require("./routes/articleRouter");
+const changeRouter = require("./routes/changeDataRouter");
+const apiLocRouter = require("./routes/apiRouter");
 require("dotenv").config();
 
 const FileStore = store(session);
@@ -38,7 +40,11 @@ app.use("/api/auth/", authRouter);
 app.use("/api/admins/", adminsRouter);
 app.use("/api/country/", countryRouter);
 app.use("/api/locations/", locRouter);
-app.use("/api/dangers/", dangRouter)
+app.use("/api/dangers/", dangRouter);
 app.use("/api/articles/", articleRouter);
+app.use("/api/change/", changeRouter);
+app.use("/api/locatos", apiLocRouter);
 
-app.listen(PORT, () => console.log(`Server has started on PORT ${PORT}`));
+app.listen(PORT, "192.168.3.142", () =>
+  console.log(`Server has started on PORT ${PORT}`)
+);
