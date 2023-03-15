@@ -5,12 +5,12 @@ import { useNavigation } from '@react-navigation/native';
 
 export default function StartPage() {
   const navigation = useNavigation();
-  useEffect(()=> {
+  // useEffect(()=> {
     
-    setTimeout(() => {
-      navigation.navigate('Country')
-    }, 5000);
-  },[])
+  //   setTimeout(() => {
+  //     navigation.navigate('Country')
+  //   }, 5000);
+  // },[])
   
   return (
     <>
