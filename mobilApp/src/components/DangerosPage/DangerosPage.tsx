@@ -1,10 +1,12 @@
 import React, { useEffect } from 'react';
-import { View, Text, TouchableHighlight } from 'react-native';
+import { View, Text, TouchableHighlight, ImageBackground } from 'react-native';
 import { useAppDispatch, useAppSelector } from '../../features/reduxHooks';
 import { useNavigation } from '@react-navigation/native';
 
 import { RouteProp, useRoute } from '@react-navigation/native';
 import { getDangerosThunk } from '../../features/actions/dangerosAction';
+
+import backgroundImage from '../Images/phonepic.png';
 
 type RootStackParamList = {
   OnePost: { id: number; idCountry: number };
@@ -30,29 +32,47 @@ export default function DangerosPage() {
   }, []);
 
   return (
-    <View>
+    <ImageBackground source={backgroundImage} style={styles.background}>
+          <View style={styles.card2}>
       {dangeros.map((item) => (
-        <TouchableHighlight key={item.id} onPress={() => handlePress(item.id)}>
+        <TouchableHighlight
+          key={item.id}
+          onPress={() => handlePress(item.id)}
+        >
           <View style={styles.card}>
             <Text style={styles.title}>{item.name}</Text>
-            {/* <Text>{item.description}</Text> */}
           </View>
         </TouchableHighlight>
       ))}
     </View>
+    </ImageBackground>
+
   );
 }
 const styles = {
+  background: {
+    flex: 1,
+    resizeMode: 'cover',
+    justifyContent: 'center',
+  },
   card: {
-    backgroundColor: '#fff',
-    borderRadius: 5,
+    backgroundColor: '#228B60',
+    width: 250,
+    borderRadius: 10,
     padding: 10,
-    marginBottom: 10,
+    marginBottom: 30,
     elevation: 3,
+    justifyContent: 'center',
+    alignItems: 'center',
   },
   title: {
-    fontWeight: 'bold',
-    fontSize: 16,
+    fontFamily: 'Arial',
+    fontWeight: 'normal',
+    fontSize: 20,
     marginBottom: 5,
+    color: '#FFFFFF',
+  },
+  card2: {
+    marginLeft: 70,
   },
 };
