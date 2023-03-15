@@ -5,46 +5,34 @@ import { useNavigation } from '@react-navigation/native';
 
 import { RouteProp, useRoute } from '@react-navigation/native';
 import { getDangerosThunk } from '../../features/actions/dangerosAction';
+import { getArticleThunk } from '../../features/actions';
 
-import backgroundImage from '../Images/phonepic.png';
+import backgroundImage from '../Images/phonepic.png'
 
 type RootStackParamList = {
   OnePost: { id: number; idCountry: number };
 };
 
 type OnePostRouteProp = RouteProp<RootStackParamList, 'OnePost'>;
-export default function DangerosPage() {
-  const dangeros = useAppSelector((state) => state.sliceData.dangeros);
+export default function ArticalPage() {
+  const article = useAppSelector((state) => state.sliceData.article);
   const dispatch = useAppDispatch();
 
-  const navigation = useNavigation();
   const route = useRoute<OnePostRouteProp>();
 
-  const { id, idCountry } = route.params;
-
-  const handlePress = (id) => {
-    // Переход на следующую страницу с передачей параметра id
-    navigation.navigate('Artical', { id });
-  };
+  const { id } = route.params;
 
   useEffect(() => {
-    dispatch(getDangerosThunk(route.params)).catch((err) => console.log(err));
+    dispatch(getArticleThunk(id)).catch((err) => console.log(err));
   }, []);
 
   return (
     <ImageBackground source={backgroundImage} style={styles.background}>
           <View style={styles.card2}>
-      {dangeros.map((item) => (
-        <TouchableHighlight
-          key={item.id}
-          onPress={() => handlePress(item.id)}
-          underlayColor="transparent"
-        >
-          <View style={styles.card}>
-            <Text style={styles.title}>{item.name}</Text>
-          </View>
-        </TouchableHighlight>
-      ))}
+        <View style={styles.card}>
+          <Text style={styles.article1}>{article.name}</Text>
+          <Text style={styles.article}>{article.article}</Text>
+        </View>  
     </View>
     </ImageBackground>
 
@@ -57,8 +45,8 @@ const styles = {
     justifyContent: 'center',
   },
   card: {
-    backgroundColor: '#228B60',
-    width: 250,
+    backgroundColor: '#fff',
+    width : 350,
     borderRadius: 10,
     padding: 10,
     marginBottom: 30,
@@ -66,14 +54,23 @@ const styles = {
     justifyContent: 'center',
     alignItems: 'center',
   },
-  title: {
+  article: {
     fontFamily: 'Arial',
     fontWeight: 'normal',
     fontSize: 20,
+    // justifyContent: 'spase-between',
+    alignItems: 'center',
     marginBottom: 5,
-    color: '#FFFFFF',
+    color: 'black',
+  },
+  article1: {
+    fontFamily: 'Arial',
+    fontWeight: 'bold',
+    fontSize: 24,
+    marginBottom: 5,
+    color: 'black',
   },
   card2: {
-    marginLeft: 70,
+    marginLeft: 20,
   },
 };

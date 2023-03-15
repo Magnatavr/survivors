@@ -1,11 +1,12 @@
 import { createSlice } from '@reduxjs/toolkit';
-import { getCountryThunk, getLocationsThunk } from '../actions';
+import { getArticleThunk, getCountryThunk, getLocationsThunk } from '../actions';
 import { getDangerosThunk } from '../actions/dangerosAction';
 
 const initialState = {
   countres:[],
   location:[],
-  dangeros:[]
+  dangeros:[],
+  article:[]
 };
 
 const allItems = createSlice({
@@ -24,6 +25,10 @@ const allItems = createSlice({
     })
     .addCase(getDangerosThunk.fulfilled,(state,action)=> {
       state.dangeros = action.payload;
+
+    })
+    .addCase(getArticleThunk.fulfilled,(state,action)=> {
+      state.article = action.payload;
 
     })
   }
