@@ -24,7 +24,7 @@ export default function DangerosPage() {
 
   const handlePress = (id) => {
     // Переход на следующую страницу с передачей параметра id
-    navigation.navigate('Artical', { id });
+    navigation.navigate('Article', { id });
   };
 
   useEffect(() => {

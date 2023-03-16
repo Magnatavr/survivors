@@ -39,7 +39,7 @@ export default function LocationComponent() {
 
 
   const handlePress = (id: number, idCountry: number) => {
-    navigation.navigate('Dangeros', { id, idCountry });
+    navigation.navigate('Dangerous', { id, idCountry });
   };
 
   useEffect(() => {

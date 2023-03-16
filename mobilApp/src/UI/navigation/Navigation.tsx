@@ -23,9 +23,9 @@ const MainStack = () => (
      <Stack.Navigator>
         <Stack.Screen name="Start" component={StartPage} options={{ headerShown: false }}/>
         <Stack.Screen name="Country" component={CountryPage} options={{ headerShown: false }}/> 
-        <Stack.Screen name="location" component={LocationComponent} /> 
-        <Stack.Screen name="Dangeros" component={DangerosPage} /> 
-        <Stack.Screen name="Artical" component={ArticalPage} /> 
+        <Stack.Screen name="Location" component={LocationComponent} /> 
+        <Stack.Screen name="Dangerous" component={DangerosPage} /> 
+        <Stack.Screen name="Article" component={ArticalPage} /> 
         <Stack.Screen name="fireMaking" component={FireMakingPage} options={{ headerShown: false }}/>
         <Stack.Screen name="sunOrientation" component={SunOrientationPage} options={{ headerShown: false }}/>
         <Stack.Screen name="yewBerries" component={YewBerriesPage} options={{ headerShown: false }}/>
@@ -42,9 +42,9 @@ const MainTabStack = () => (
       tabBarIcon: ({ focused, color, size }) => {
         let iconName;
 
-        if (route.name === 'Start') {
+        if (route.name === 'main') {
           iconName = focused ? 'th-list' : 'th-list';
-        } else if (route.name === 'extro-information') {
+        } else if (route.name === 'extra-information') {
           iconName = focused ? 'fire' : 'fire';
         }
 
@@ -61,8 +61,8 @@ const MainTabStack = () => (
       ],
     })}
   >
-    <Tab.Screen name="Start" component={MainStack} options={{ headerShown: false }} />
-    <Tab.Screen name="extro-information" component={InfoPage} options={{ headerShown: false }}/>
+    <Tab.Screen name="main" component={MainStack} options={{ headerShown: false }} />
+    <Tab.Screen name="extra-information" component={InfoPage} options={{ headerShown: false }}/>
   </Tab.Navigator>
 );
 

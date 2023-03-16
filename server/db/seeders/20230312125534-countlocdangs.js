@@ -107,6 +107,13 @@ module.exports = {
         createdAt: new Date(),
         updatedAt: new Date(),
       },
+      {
+        countryId: 3,
+        locationId: 3,
+        dangerId: 13,
+        createdAt: new Date(),
+        updatedAt: new Date(),
+      },
     ], {});
   },
   async down(queryInterface, Sequelize) {
