@@ -25,7 +25,7 @@ export default function InfoPage() {
             <Text style={styles.title}>Ориентация по солнцу</Text>
           </View>
         </TouchableHighlight>
-        <TouchableHighlight onPress={() => handlePress('yewBerries')} underlayColor="transparent">
+        <TouchableHighlight  underlayColor="transparent">
           <View style={styles.card}>
             <Text style={styles.title}>Ядовитые ягоды</Text>
           </View>
