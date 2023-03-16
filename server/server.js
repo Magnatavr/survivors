@@ -41,4 +41,4 @@ app.use("/api/locations/", locRouter);
 app.use("/api/dangers/", dangRouter)
 app.use("/api/articles/", articleRouter);
 
-app.listen(PORT, '192.168.1.72', () => console.log(`Server has started on http://192.168.1.72:${PORT}`));
+app.listen(PORT, '192.168.2.252', () => console.log(`Server has started on http://192.168.2.252:${PORT}`));
