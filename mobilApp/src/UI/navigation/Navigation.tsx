@@ -9,8 +9,11 @@ import CountryPage from '../../components/CountryPage/CountryPage';
 import LocationComponent from '../../components/LocationComponent/LocationComponent';
 import DangerosPage from '../../components/DangerosPage/DangerosPage';
 import ArticalPage from '../../components/ArticlPage/ArticalPage';
-import HomePages from '../../components/homepages/HomePages';
 import Icon from 'react-native-vector-icons/FontAwesome';
+import FireMakingPage from '../../components/fireMakingPage/FireMakingPage';
+import SunOrientationPage from '../../components/sunOrientationPage/SunOrientationPage';
+import YewBerriesPage from '../../components/starOrintation/StarsOrintation';
+import InfoPage from '../../components/infoPage/InfoPage';
 
 const Tab = createBottomTabNavigator();
 const Stack = createStackNavigator();
@@ -23,6 +26,9 @@ const MainStack = () => (
         <Stack.Screen name="location" component={LocationComponent} /> 
         <Stack.Screen name="Dangeros" component={DangerosPage} /> 
         <Stack.Screen name="Artical" component={ArticalPage} /> 
+        <Stack.Screen name="fireMaking" component={FireMakingPage} options={{ headerShown: false }}/>
+        <Stack.Screen name="sunOrientation" component={SunOrientationPage} options={{ headerShown: false }}/>
+        <Stack.Screen name="yewBerries" component={YewBerriesPage} options={{ headerShown: false }}/>
         
       </Stack.Navigator>
 
@@ -36,9 +42,9 @@ const MainTabStack = () => (
       tabBarIcon: ({ focused, color, size }) => {
         let iconName;
 
-        if (route.name === 'MainStack') {
+        if (route.name === 'Start') {
           iconName = focused ? 'th-list' : 'th-list';
-        } else if (route.name === 'information') {
+        } else if (route.name === 'extro-information') {
           iconName = focused ? 'fire' : 'fire';
         }
 
@@ -55,8 +61,8 @@ const MainTabStack = () => (
       ],
     })}
   >
-    <Tab.Screen name="MainStack" component={MainStack} options={{ headerShown: false }} />
-    <Tab.Screen name="information" component={HomePages} />
+    <Tab.Screen name="Start" component={MainStack} options={{ headerShown: false }} />
+    <Tab.Screen name="extro-information" component={InfoPage} options={{ headerShown: false }}/>
   </Tab.Navigator>
 );
 
