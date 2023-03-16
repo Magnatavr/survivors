@@ -4,7 +4,8 @@ import { getCountryThunk } from '../../features/actions';
 import { useAppDispatch, useAppSelector } from '../../features/reduxHooks';
 import { useNavigation } from '@react-navigation/native';
 
-import backgroundImage from '../Images/earth.png';
+import backgroundImage from '../Images/planet.webp';
+
 
 export default function CountryPage() {
   const countres = useAppSelector((state) => state.sliceData.countres);
