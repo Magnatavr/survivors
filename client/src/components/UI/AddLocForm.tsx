@@ -1,16 +1,21 @@
 import React, { useEffect, useState } from 'react';
-import Button from 'react-bootstrap/Button';
 import Form from 'react-bootstrap/Form';
 import { useAppDispatch, useAppSelector } from '../../features/reduxHooks';
 import {
+  deleteCheckboxLocationActionThunk,
   getAllCountryActionThunk,
   getAllLocationActionThunk,
   getAllLocationsInCountryActionThunk,
+  redactCheckboxLocationActionThunk,
 } from '../../features/actions';
-// import type { CountryLocTypeForm } from '../../types';
 
-export default function AddPostForm(): JSX.Element {
-  const [statusList, setStatusList] = useState(false);
+
+
+export default function AddLocForm(): JSX.Element {
+
+  const [statusList, setStatusList] = useState<boolean>(false);
+  const [currCountry, setCurrentCountry] = useState<number | null>(null);
+
   const dispatch = useAppDispatch();
   useEffect(() => {
     dispatch(getAllCountryActionThunk()).catch(() => null);
@@ -23,6 +28,7 @@ export default function AddPostForm(): JSX.Element {
   const handleSwitchCountry = (
     e: React.ChangeEvent<HTMLSelectElement>,
   ): void => {
+    setCurrentCountry(Number(e.target.value));
     dispatch(getAllLocationsInCountryActionThunk(e.target.value)).catch(
       () => null,
     );
@@ -30,7 +36,17 @@ export default function AddPostForm(): JSX.Element {
       setStatusList(true);
     }
   };
+
   const contextLocation = useAppSelector((state) => state.itemData.locations);
+
+  const changeHandler = (locationId: number, checked: boolean): void => {
+    if (checked) {
+      dispatch(redactCheckboxLocationActionThunk({ locationId, currCountry }));
+    } else {
+      dispatch(deleteCheckboxLocationActionThunk({ locationId, currCountry }));
+    }
+  };
+
   return (
     <Form>
       <Form.Group controlId="formBasicSelect">
@@ -56,18 +72,12 @@ export default function AddPostForm(): JSX.Element {
               key={location.id}
               type="checkbox"
               label={location.name}
-              checked={contextLocation.some(
-                (el) => el.id === location.id,
-              )}
+              checked={contextLocation?.some((el) => el.id === location.id)}
+              onChange={(e) => changeHandler(location.id, e.target.checked)}
             />
           ))}
         </Form.Group>
       )}
-      <div className="text-center mb-3">
-        <Button variant="primary" type="submit">
-          Добавить локацию
-        </Button>
-      </div>
     </Form>
   );
 }
