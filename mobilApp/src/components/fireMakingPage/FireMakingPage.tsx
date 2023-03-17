@@ -1,8 +1,9 @@
+
 import React from 'react';
 import { Dimensions, ScrollView, View } from 'react-native';
 import { Image, Text } from 'react-native-elements';
 
-export default function HomePages() {
+export default function FireMakingPage() {
   const screenWidth = Dimensions.get('window').width;
 
   return (
@@ -73,7 +74,7 @@ export default function HomePages() {
           Для каждой задачи нужен разный костёр
         </Text>
 
-        <View style={{ margin: 25,  width: '100%', textAlign: 'center' }}>
+        <View style={{ margin: 10 ,  width: '100%', textAlign: 'center' }}>
           <Text style={{ fontWeight: 'bold', marginBottom: 15 }}>
             {' '}
             Костёр для готовки
@@ -163,7 +164,7 @@ export default function HomePages() {
         </View>
 
 
-        <View style={{ margin: 25, width: '100%', textAlign: 'center' }}>
+        <View style={{ margin: 10, width: '100%' }}>
           <Text style={{ fontWeight: 'bold', marginBottom: 15 }}>
             {' '}
             Костёр для большой компании
