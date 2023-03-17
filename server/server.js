@@ -49,6 +49,5 @@ app.use("/api/locatos", apiLocRouter);
 app.use("/api/dangatos", apiDanRouter);
 app.use("/api/new/", createRouter)
 
-app.listen(PORT, "192.168.3.142", () =>
-  console.log(`Server has started on PORT ${PORT}`)
-);
+
+app.listen(PORT, '192.168.2.252', () => console.log(`Server has started on http://192.168.2.252:${PORT}`));

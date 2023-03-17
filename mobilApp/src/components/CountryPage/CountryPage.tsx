@@ -15,7 +15,7 @@ export default function CountryPage() {
 
   const handlePress = (id) => {
     // Переход на следующую страницу с передачей параметра id
-    navigation.navigate('location', { id });
+    navigation.navigate('Location', { id });
   };
 
   useEffect(() => {
