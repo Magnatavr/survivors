@@ -21,27 +21,30 @@ export default function AppNavbar(): JSX.Element {
         <Nav className="me-auto" style={{ flexGrow: 1 }}>
           {userData.sessions.user?.role === 'superAdmin' && (
             <NavLink className="nav-link" to="/super+">
-              + ADMIN
+              Добавить администратора
             </NavLink>
           )}
           {userData.sessions.status !== 'logged' && (
             <NavLink className="nav-link" to="/auth/signin">
-              signin
+              Войти
             </NavLink>
           )}
         </Nav>
         {userData.sessions.status === 'logged' && (
           <>
             <Nav className="me-auto">
+              <NavLink className="nav-link" to="/createitem">
+                Создание
+              </NavLink>
               <NavLink className="nav-link" to="/">
-                Add location
+                Добавление локации
               </NavLink>
               <NavLink className="nav-link" to="/dangersedit">
-                Add dangers
+                Добавление статьи
               </NavLink>
               <span className="nav-link">
                 {' '}
-                Hello, {userData?.sessions?.user?.name}
+                Привет, {userData?.sessions?.user?.name}
               </span>
             </Nav>
             <Button
@@ -50,7 +53,7 @@ export default function AppNavbar(): JSX.Element {
               variant="warning"
             >
               {' '}
-              logout
+              Выйти
             </Button>
           </>
         )}

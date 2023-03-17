@@ -8,7 +8,7 @@ export default function AdminPageAddDangers(): JSX.Element {
     <Row className="d-flex justify-content-center md-5 my-4">
       <Col md={4}>
         <div className="text-center mb-3">
-          <h6>Добавить локацию в страну</h6>
+          <h6>Добавить угрозы в список локаций</h6>
         </div>
         <AddDangerForm />
       </Col>

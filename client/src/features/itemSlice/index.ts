@@ -2,12 +2,14 @@ import type { PayloadAction } from '@reduxjs/toolkit';
 import { createSlice } from '@reduxjs/toolkit';
 import type { CountryType, DangerType, LocationType } from '../../types';
 import {
+  deleteCheckboxDangerActionThunk,
   deleteCheckboxLocationActionThunk,
   getAllCountryActionThunk,
   getAllDangerActionThunk,
   getAllDangersInLocationActionThunk,
   getAllLocationActionThunk,
   getAllLocationsInCountryActionThunk,
+  redactCheckboxDangerActionThunk,
   redactCheckboxLocationActionThunk,
 } from '../actions/itemActions';
 
@@ -70,6 +72,12 @@ const itemSlice = createSlice({
         state.locations = state.locations.filter(
           (el) => el.id !== action.payload,
         );
+      })
+      .addCase(redactCheckboxDangerActionThunk.fulfilled, (state, action) => {
+        state.dangers.push(action.payload);
+      })
+      .addCase(deleteCheckboxDangerActionThunk.fulfilled, (state, action) => {
+        state.dangers = state.dangers.filter((el) => el.id !== action.payload);
       });
   },
 });

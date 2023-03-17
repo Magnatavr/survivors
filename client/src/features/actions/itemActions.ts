@@ -50,12 +50,44 @@ export const redactCheckboxLocationActionThunk = createAsyncThunk<
     }),
 );
 
+export const redactCheckboxDangerActionThunk = createAsyncThunk<
+  DangerType,
+  {
+    locationId: number | null;
+    countryId: number | null;
+    dangerId: number | null;
+  }
+>('redact/locdang', async (data) =>
+  axios
+    .post<DangerType>('/api/dangatos', data)
+    .then((res) => res.data)
+    .catch(() => {
+      throw new Error('err');
+    }),
+);
+
 export const deleteCheckboxLocationActionThunk = createAsyncThunk<
   number,
   { locationId: number; currCountry: number | null }
 >('delete/conloc', async (data) =>
   axios
     .delete<number>('/api/locatos/delitos', { data })
+    .then((res) => res.data)
+    .catch(() => {
+      throw new Error('err');
+    }),
+);
+
+export const deleteCheckboxDangerActionThunk = createAsyncThunk<
+  number,
+  {
+    locationId: number | null;
+    countryId: number | null;
+    dangerId: number | null;
+  }
+>('delete/locdang', async (data) =>
+  axios
+    .delete<number>('/api/dangatos/delitos', { data })
     .then((res) => res.data)
     .catch(() => {
       throw new Error('err');
