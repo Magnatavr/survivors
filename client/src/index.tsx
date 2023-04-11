@@ -7,7 +7,7 @@ import App from './App';
 import store from './redux/store';
 import 'bootstrap/dist/css/bootstrap.min.css';
 
-axios.defaults.baseURL = 'http://localhost:3001';
+axios.defaults.baseURL = 'http://192.168.2.252:3001';
 axios.defaults.withCredentials = true;
 
 const root = ReactDOM.createRoot(

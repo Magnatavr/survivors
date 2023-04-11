@@ -7,7 +7,7 @@ import { useAppSelector } from '../../features/reduxHooks';
 export default function SuperAdminPage(): JSX.Element {
   const admins = useAppSelector((state) => state.userData.admin);
   return (
-    <Row className="d-flex justify-content-center md-5">
+    <Row className="d-flex justify-content-center md-5 my-4">
       <Col md={4}>
         <div className="text-center mb-3">
           <h6>Зарегистрировать нового админа</h6>
